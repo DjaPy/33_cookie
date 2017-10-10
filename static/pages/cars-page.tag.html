@@ -11,18 +11,21 @@
     </div>
   </div>
   <script type="text/javascript">
+    var OPTIONS_REQUEST = {method: 'GET',
+                           credentials: 'include',
+                           mode: 'cors',
+                           }
+
     this.cars = []
 
     var riotTag = this
 
     function fetchCars(){
-      fetch(window.getAPIUrl('/cars/')).then(function(response) {
-          credentials: 'include'
-      }).then(function(response) {
+      fetch(window.getAPIUrl('/cars/'), OPTIONS_REQUEST).then(function(response) {
         if (response.status==200){
           return response.json()
         } else if (response.status==403){
-          window.go2page('/signup')
+          window.go2page('/signup/')
         } else if (response.status==500){
           alert('Упс, что-то пошло не так. Ошибка на сервере')
         }
