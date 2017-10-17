@@ -11,17 +11,17 @@
     </div>
   </div>
   <script type="text/javascript">
-    var OPTIONS_REQUEST = {method: 'GET',
-                           credentials: 'include',
-                           mode: 'cors',
-                           }
 
     this.cars = []
 
     var riotTag = this
 
     function fetchCars(){
-      fetch(window.getAPIUrl('/cars/'), OPTIONS_REQUEST).then(function(response) {
+      fetch(window.getAPIUrl('/cars'), {
+        method: 'POST',
+        credentials: 'include',
+        mode: 'cors',
+      }).then(function(response) {
         if (response.status==200){
           return response.json()
         } else if (response.status==403){

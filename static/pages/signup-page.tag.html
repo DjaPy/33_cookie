@@ -53,15 +53,13 @@
       var riotTag = this
       var formElement = event.target
 
-      var options_request = {method: 'POST',
-                             credentials:'include',
-                             mode: 'cors',
-                             body: new FormData(formElement)
-                            }
-
-      fetch(window.getAPIUrl('/signup/'), options_request).then(function(response) {
+      var initSettings = { method: 'POST',
+                           credentials:'include',
+                           mode: 'cors',
+                           body: new FormData(formElement) }
+      fetch(window.getAPIUrl('/signup/'), initSettings).then(function(response) {
         if (response.status==200){
-          window.go2page('/')
+          window.go2page('#/')
         } else if (response.status==400){
           riotTag.errorMsg = 'Упс, что-то пошло не так. Попробуйте еще раз'
           riotTag.update()
